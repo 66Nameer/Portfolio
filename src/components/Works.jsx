@@ -26,7 +26,8 @@ const ProjectCard = ({index, name, description, tags, image, source_code_link}) 
       variants={fadeIn("right", 'spring', index * 0.5, 0.75)}
       transition={{ ease: 'easeOut', duration: 0.1}}
     >
-      <Tilt options={{max: 45, scale: 1, speed: 450}} className='bg-tertiary p-4 rounded-2xl sm:w-[360px] w-full'>
+      <Tilt options={{max: 45, scale: 1, speed: 450}} 
+      className='hover:bg-gray-900 p-4 rounded-2xl sm:w-[360px] w-full'>
         {/* This is for the image on the card */}
         <div className="relative w-full h-[230px]">
           <img src={image} alt={name} className="w-full h-full object-cover rounded-2xl"/>

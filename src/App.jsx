@@ -4,20 +4,20 @@ import { About, Contact, Experience, Hero, Navbar, Works, Progress, StarsCanvas 
 const App = () => {
   return (
     <BrowserRouter>
-    <div className="relative z-0 bg-black">
-    <StarsCanvas />
-      <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center">
-        <Navbar />
-        <Hero />
+      <div>
+        <div className="bg-whitebg-cover bg-no-repeat bg-center">
+          <Navbar />
+          <Hero />
+        </div>
+        <div className="bg-amber">
+          <About />
+        </div>
+        <Works /> 
+        <Progress />
+        <div className="relative z-0">
+          <Contact />
+        </div>
       </div>
-      <About />
-      {/* <Experience /> */}
-      <Works /> 
-      <Progress />
-      <div className="relative z-0">
-        <Contact />
-      </div>
-    </div>
     </BrowserRouter>
   )
 }
