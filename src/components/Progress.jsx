@@ -13,7 +13,7 @@ import { SectionWrapper } from "../hoc";
 
 const ProgressCard = ({name, description, progressBar}) => {
     return (
-        <motion.div variants={slideIn("left", 'tween', 0.2, 1)} className='container bg-tertiary p-4 rounded-5xl sm:w-[360px] w-full'>
+        <motion.div variants={slideIn("left", 'tween', 0.2, 1)} className='container p-4 rounded-5xl sm:w-[360px] w-full'>
             <div className='skill-box'>
                 <span className='title'>{name}</span>
                 <div className='skill-bar'>
@@ -46,4 +46,4 @@ const Progress = () => {
     )
 }
 
-export default SectionWrapper(Progress,"");
+export default SectionWrapper(Progress,"progress");

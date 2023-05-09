@@ -10,20 +10,13 @@ const Navbar = () => {
   const [active, setActive] = useState(' ');
   const [toggle, setToggle] = useState(false);
   return (
-    <nav
-      className={`${styles.paddingX} w-full flex items-center py-5 fixed top-0 z-20 bg-primary`}
-    >
+    <nav className={`${styles.paddingX} w-full flex items-center py-5 fixed top-0 z-20 bg-transparent backdrop-blur-3xl`}>
       <div className='w-full flex justify-between items-center max-w-7xl mx-auto'>
         <Link to='/' className='flex items-center gap-2 on' onClick={() => {
           setActive("");
           window.scrollTo(0, 0);
         }}>
-            <img src={logo} alr="logo" className='w-9 h-9 object-contain' />
-            <p className='text-white text-[18px] 
-            font-bold cursor-pointer flex'>
-            Nameer &nbsp; 
-            <span className='sm:block hidden'>| Web Dev</span>
-            </p>
+            <img src={logo} alr="logo" className='w-13 h-10 object-contain' />
         </Link>
           <ul className='list-none hidden sm:flex flex-row gap-10'>
             {navLinks.map((link) => (
@@ -34,8 +27,7 @@ const Navbar = () => {
                     ? "text-white"
                     : "text-secondary"
                 } hover:text-white text-[18px] font-medium cursor-pointer`}
-                onClick={() => setActive(link.title)}
-              >
+                onClick={() => setActive(link.title)}>
                 <a href={`#${link.id}`}>{link.title}</a>
               </li>
             ))}

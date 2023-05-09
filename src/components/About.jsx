@@ -11,11 +11,11 @@ const ServiceCard = ({index, title, icon}) => {
   return (
     <Tilt className='xs:w-[250px] w-full '> 
       <motion.div variants={fadeIn("right", "spring", 0.5 * index, 0.75)}
-        className='w-full green-pink-gradient p-[1px] rounded-[20px] shadow-card'
+        className='w-full green-pink-gradient p-[2px] rounded-[20px] shadow-card'
       >
         <div
           options={{
-            max: 45,
+            max: 25,
             scale: 1,
             speed: 450
           }}
@@ -49,3 +49,8 @@ const About = () => {
 }
 
 export default SectionWrapper(About, 'about');
+
+//     display: flex;
+//     flex-wrap: wrap;
+//     justify-content: center;
+//     align-items: center;

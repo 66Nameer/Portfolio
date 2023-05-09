@@ -9,9 +9,7 @@ const App = () => {
           <Navbar />
           <Hero />
         </div>
-        <div className="bg-amber">
-          <About />
-        </div>
+        <About />
         <Works /> 
         <Progress />
         <div className="relative z-0">

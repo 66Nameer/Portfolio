@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import {Tilt} from "react-tilt";
 import { motion } from "framer-motion";
 
+import {AiFillEye} from 'react-icons/ai';
+
 import { styles } from "../styles";
 import { github } from "../assets";
 import { SectionWrapper } from "../hoc";
 import { projects } from "../constants";
 import { fadeIn, textVariant } from "../utils/motion";
+import './Works.scss';
 
 const ProjectCard = ({index, name, description, tags, image, source_code_link}) => {
 
@@ -26,7 +29,7 @@ const ProjectCard = ({index, name, description, tags, image, source_code_link}) 
       variants={fadeIn("right", 'spring', index * 0.5, 0.75)}
       transition={{ ease: 'easeOut', duration: 0.1}}
     >
-      <Tilt options={{max: 45, scale: 1, speed: 450}} 
+      <Tilt options={{max: 25, scale: 1, speed: 450}} 
       className='hover:bg-gray-900 p-4 rounded-2xl sm:w-[360px] w-full'>
         {/* This is for the image on the card */}
         <div className="relative w-full h-[230px]">
@@ -37,8 +40,6 @@ const ProjectCard = ({index, name, description, tags, image, source_code_link}) 
             </div>
           </div>
         </div>
-        {/* This is for the image on the card */}
-         
         {/* This is for the desciption */}
           <motion.div 
             className="mt-5" 
@@ -51,7 +52,6 @@ const ProjectCard = ({index, name, description, tags, image, source_code_link}) 
               <p className="mt-2 text-secondary text-[14px]">{description}</p>
               )}
           </motion.div>
-        {/* This is for the desciption */}
         {/* This is for the tags */}
         <div className="mt-10 flex flex-wrap gap-2">
            {tags.map((tag) =>(
@@ -60,39 +60,102 @@ const ProjectCard = ({index, name, description, tags, image, source_code_link}) 
             </p>
            ))}
         </div>
-        {/* This is for the tags */}
       </Tilt>
     </motion.div>
   )
 }
 
 const Works = () => {
+
+  const [activeFilter, setActiveFilter] = useState('All');
+  const [filterWork, setFilterWork] = useState(projects);
+
+  
+  const handleWorkFilter = (item) => {
+    setActiveFilter(item);
+    if(item === 'All'){
+      setFilterWork(projects);
+    } else {
+      setFilterWork(projects.filter((project) => project.level === item));
+    }
+    console.log(filterWork);
+  };
   return (
     <>
+    {/* Header */}
       <motion.div variants={textVariant()}>
         <p className={styles.sectionSubText}>Personal Work</p>
         <h2 className={styles.sectionHeadText}>Projects</h2>
       </motion.div>
 
-      <div className="w-full flex">
-        <motion.p
-          variants={fadeIn("", "", 0.1, 1)}
-          className="mt-3 text-secondary text-[17px] max-w-3xl leading-[30px]"
-        >
-          These are what I have completed
-        </motion.p>
-      </div>
-      <div className="mt-20 flex flex-wrap gap-7">
-        {projects.map((project, index) => (
-          <ProjectCard 
-            key={`project-${index}`}
-            index={index}
-            {...project} 
-          />
+      {/* Tabs */}
+      <div className="app__work-filter">
+        {["All", "Beginner", "Intermediate", "Advanced"].map((item, index) => (
+          <div
+          key={index}
+          onClick={() => handleWorkFilter(item)}
+          className={`
+          app__work-filter-item flex p-text
+          ${activeFilter === item ? 'item-active' : ''} `}>
+            {item}
+          </div>
         ))}
       </div>
+      {/* Project Cards */}
+      <motion.div 
+        transition={{ duration: 0.5, delayChildren: 0.5}}
+        className="app__work-portfolio">
+        {filterWork.map((project, index) => (
+            <div className="app__work-item app__flex" key={index}>
+              <div className="app__work-img app__flex">
+                <img src={project.image} alt={project.name}/>
+                <motion.div
+                  whileHover={{opacity: [0, 1]}}
+                  transition={{duration: 0.5, delayChildren: 0.25, ease: 'easeInOut', staggerChildren: 0.5}}
+                  className="app__work-hover flex">
+                  <a href={project.source_code_link} target="_blank" rel='norefer'>
+                    <motion.div
+                      whileInView={{scale: [0, 1]}}
+                      whileHover={{scale: [1, 0.9]}}
+                      transition={{duration: 0.25}}
+                      className="app__flex">
+                      <AiFillEye />
+                    </motion.div>
+                  </a>
+                </motion.div>
+              </div>
+              <div className="mt-2 text-secondary text-[14px]">
+                <h3 className="text-white font-bold text-[24px] mb-4">{project.name}</h3>
+                <p className="p-text" style={{marginTop: 10}}>{project.description}</p>
+              </div>
+                <div className="mt-10 flex flex-wrap gap-2">
+                  {project.tags.map((tag) =>(
+                    <p key={tag.name} className={`text-[14px] ${tag.color}`}>
+                      {tag.name}
+                    </p>
+                    ))}
+                </div>
+            </div>
+            ))}
+        </motion.div>
     </>
   )
 }
 
-export default SectionWrapper(Works, "");
+export default SectionWrapper(Works, "work");
+
+
+{/* // <ProjectCard
+// key={`project-${index}`}
+// index={index}
+// {...project} 
+// /> */}
+
+
+{/* Subtext - not in use */}
+  {/* <div className="w-full flex">
+    <motion.p
+      variants={fadeIn("", "", 0.1, 1)}
+      className="mt-3 text-secondary text-[17px] max-w-3xl leading-[30px]">
+    </motion.p>
+  </div> */}

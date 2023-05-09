@@ -41,6 +41,10 @@ import {
       id: "contact",
       title: "Contact",
     },
+    {
+      id: "progress",
+      title: "Progress",
+    },
   ];
   
   const services = [
@@ -204,9 +208,10 @@ import {
       name: "Face Recognition",
       description:
         "Front-end React Js application that recognizes faces in an image using Clarifai API",
+      level: "Advanced",
       tags: [
         {
-          name: "react",
+          name: "React",
           color: "blue-text-gradient",
         },
         {
@@ -233,6 +238,7 @@ import {
       name: "Image Processing",
       description:
         "An image processing application that merges two images, and can do edge detection",
+      level: "Intermediate",
       tags: [
         {
           name: "Java",
@@ -246,6 +252,7 @@ import {
       name: "Robo-Friends",
       description:
         "Simple react card filtering application. Used as a basis to learn React Js",
+      level: "Beginner",
       tags: [
         {
           name: 'JavaScript',
@@ -267,6 +274,7 @@ import {
       name: "Tik-Tok Video Downloader",
       description:
         "Automatically download Tik-Tok videos, without watermark, given an acount or hashtag",
+      level: "Beginner",
       tags: [
         {
           name: "Python",
