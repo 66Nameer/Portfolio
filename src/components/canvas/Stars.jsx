@@ -7,7 +7,9 @@ import { motion } from "framer-motion";
 
 const Stars = (props) => {
   const ref = useRef();
-  const [sphere] = useState(() => random.inSphere(new Float32Array(100000), { radius: 10 }));
+  const [sphere] = useState(() =>
+    random.inSphere(new Float32Array(100000), { radius: 10 })
+  );
 
   useFrame((state, delta) => {
     ref.current.rotation.x -= delta / 60;
@@ -19,7 +21,7 @@ const Stars = (props) => {
       <Points ref={ref} positions={sphere} stride={3} frustumCulled {...props}>
         <PointMaterial
           transparent
-          color='black'
+          color="black"
           size={0.009}
           sizeAttenuation={true}
           depthWrite={true}
@@ -31,16 +33,14 @@ const Stars = (props) => {
 
 const StarsCanvas = () => {
   return (
-    
-      <div className='w-full h-screen absolute inset-0 z-[0]'>
-        <Canvas camera={{ position: [0, 0, 1] }}>
-          <Suspense fallback={null}>
-            <Stars />
-          </Suspense>
-          <Preload all />
-        </Canvas>
-      </div>
-    
+    <div className="w-full h-screen absolute inset-0 z-[0]">
+      <Canvas camera={{ position: [0, 0, 1] }}>
+        <Suspense fallback={null}>
+          <Stars />
+        </Suspense>
+        <Preload all />
+      </Canvas>
+    </div>
   );
 };
 
